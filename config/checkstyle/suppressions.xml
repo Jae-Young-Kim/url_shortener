@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <!-- Suppress Spring Boot Application main-->
+    <suppress files="PluginApplication.java" checks="HideUtilityClassConstructor" />
+
+    <!-- Suppressions for unit testing code -->
+    <suppress checks="MagicNumber" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="JavadocMethod" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="JavadocVariable" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="JavadocType" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="IllegalThrows" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="ImportControl" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="VisibilityModifier" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="WhitespaceAround" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+    <suppress checks="MethodName" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
+
+
+    <!-- ignore warning on eclipse exported config files -->
+    <suppress checks=".*" files="[\\/]src[\\/]main[\\/]resources[\\/]ide[\\/]eclipse[\\/]" />
+
+</suppressions>
