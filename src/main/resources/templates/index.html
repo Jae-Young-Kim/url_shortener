@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+    <title>URL Shorten</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div>
+        <label for="sourceUrl">
+            <input type="text" id="sourceUrl" placeholder="url is here" value="">
+        </label>
+        <button onclick="shorten()">shorten!!</button>
+    </div>
+    <div>
+        <p>converted result : <a id="result"></a></p>
+    </div>
+    <script>
+        let shortenURI = "/shorten";
+
+        function shorten() {
+            const sourceURL = document.getElementById("sourceUrl").value;
+
+            fetch(shortenURI,
+                {
+                    method: 'POST',
+                    body: sourceURL
+                })
+                .then(function (response) {
+                    if (response.ok) return response.text();
+                })
+                .then(function (text) {
+                    if (text) {
+                        const resultAnchor = document.getElementById("result");
+                        resultAnchor.setAttribute("href", String(text));
+                        resultAnchor.innerText = String(text);
+                    }
+                    else alert('error');
+                });
+        }
+    </script>
+</body>
+</html>

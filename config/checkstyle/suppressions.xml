@@ -6,7 +6,7 @@
 
 <suppressions>
     <!-- Suppress Spring Boot Application main-->
-    <suppress files="PluginApplication.java" checks="HideUtilityClassConstructor" />
+    <suppress files="UrlShortenApplication.java" checks="HideUtilityClassConstructor" />
 
     <!-- Suppressions for unit testing code -->
     <suppress checks="MagicNumber" files="[\\/]src[\\/]test[\\/]kt[\\/]" />
