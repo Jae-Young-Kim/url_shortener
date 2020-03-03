@@ -6,41 +6,41 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShortenTest {
-    private final String base62Characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private final int expectedNum = 213041;
-    private final String expectedString = "Tq9";
+    private static final String BASE_62_CHARACTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final int EXPECTED_NUM = 213041;
+    private static final String EXPECTED_STRING = "Tq9";
 
     private int base62Size;
 
     @BeforeEach
     void setup() {
         final int expectedSize = 62;
-        assertEquals(expectedSize, base62Characters.length());
-        this.base62Size = base62Characters.length();
+        assertEquals(expectedSize, BASE_62_CHARACTERS.length());
+        this.base62Size = BASE_62_CHARACTERS.length();
     }
 
     @Test
     void encodeTest() {
-        int num = this.expectedNum;
+        int num = EXPECTED_NUM;
 
         StringBuilder sb = new StringBuilder();
         while (num > 0) {
-            sb.append(base62Characters.charAt(num % this.base62Size));
+            sb.append(BASE_62_CHARACTERS.charAt(num % this.base62Size));
             num /= this.base62Size;
         }
         String s = sb.reverse().toString();
 
-        assertEquals(this.expectedString, s);
+        assertEquals(EXPECTED_STRING, s);
     }
 
     @Test
     void decodeTest() {
         int num = 0;
 
-        for (int i=0; i< expectedString.length(); i++) {
-            num = num * this.base62Size + base62Characters.indexOf(expectedString.charAt(i));
+        for (int i = 0; i < EXPECTED_STRING.length(); i++) {
+            num = num * this.base62Size + BASE_62_CHARACTERS.indexOf(EXPECTED_STRING.charAt(i));
         }
 
-        assertEquals(expectedNum, num);
+        assertEquals(EXPECTED_NUM, num);
     }
 }

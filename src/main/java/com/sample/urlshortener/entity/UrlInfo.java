@@ -22,6 +22,12 @@ public class UrlInfo {
         this.sourceUrl = sourceUrl;
     }
 
+    public UrlInfo(int id, String sourceUrl, String convertedUrl) {
+        this.id = id;
+        this.sourceUrl = sourceUrl;
+        this.convertedUrl = convertedUrl;
+    }
+
     public int getId() {
         return id;
     }
