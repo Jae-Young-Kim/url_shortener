@@ -11,8 +11,7 @@ public class ShortenController {
 
     private final ShortenService shortenService;
 
-    @Value("${urlshortener.base-address}")
-    private String baseAddress;
+
 
     public ShortenController(ShortenService shortenService) {
         this.shortenService = shortenService;
@@ -20,11 +19,6 @@ public class ShortenController {
 
     @PostMapping("/shorten")
     public String shorten(@RequestBody String url) {
-        boolean isShortenUrl = url.contains(baseAddress);
-        if (isShortenUrl) {
-            return this.shortenService.normalize(url);
-        }
-
-        return this.baseAddress + this.shortenService.shorten(url);
+        return this.shortenService.shorten(url);
     }
 }
