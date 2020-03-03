@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ShortenTest {
+class Base62EncodeServiceTest {
     private static final String BASE_62_CHARACTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final int EXPECTED_NUM = 213041;
     private static final String EXPECTED_STRING = "Tq9";

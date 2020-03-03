@@ -6,8 +6,8 @@
 </head>
 <body>
     <div>
-        <label for="sourceUrl">
-            <input type="text" id="sourceUrl" placeholder="url is here" value="">
+        <label for="url">
+            <input type="text" id="url" placeholder="url is here" value="">
         </label>
         <button onclick="shorten()">shorten!!</button>
     </div>
@@ -18,12 +18,12 @@
         let shortenURI = "/shorten";
 
         function shorten() {
-            const sourceURL = document.getElementById("sourceUrl").value;
+            const url = document.getElementById("url").value;
 
             fetch(shortenURI,
                 {
                     method: 'POST',
-                    body: sourceURL
+                    body: url
                 })
                 .then(function (response) {
                     if (response.ok) return response.text();
