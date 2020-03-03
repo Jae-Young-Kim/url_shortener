@@ -45,4 +45,18 @@ class UrlRepositoryTest {
         assertTrue(urlInfo2.getId() > urlInfo1.getId());
         assertTrue(urlInfo3.getId() > urlInfo2.getId());
     }
+
+    @Test
+    void updateHitCountTest() {
+        UrlInfo urlInfo = new UrlInfo(TEST_URL);
+        this.urlRepository.save(urlInfo);
+
+        long key = urlInfo.getId();
+        this.urlRepository.updateCount(key);
+
+        UrlInfo found = this.urlRepository.findById(key);
+
+        final int expectedHitCount = 2;
+        assertEquals(expectedHitCount, found.getHit());
+    }
 }

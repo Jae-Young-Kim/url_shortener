@@ -21,6 +21,7 @@ public class UrlInfo {
     private long id;
     private String sourceUrl;
     private String convertedUrl;
+    private long hit = 1;
 
     public UrlInfo() {
     }
@@ -43,5 +44,13 @@ public class UrlInfo {
 
     public void setConvertedUrl(String convertedUrl) {
         this.convertedUrl = convertedUrl;
+    }
+
+    public long getHit() {
+        return hit;
+    }
+
+    public void setHit(long hit) {
+        this.hit = hit;
     }
 }

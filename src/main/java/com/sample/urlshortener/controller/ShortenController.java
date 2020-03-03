@@ -11,8 +11,6 @@ public class ShortenController {
 
     private final ShortenService shortenService;
 
-
-
     public ShortenController(ShortenService shortenService) {
         this.shortenService = shortenService;
     }

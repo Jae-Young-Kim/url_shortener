@@ -24,9 +24,10 @@ public class UrlShortenService implements ShortenService {
     @Override
     public String shorten(String sourceUrl) {
 
-        UrlInfo urlInfo = this.urlRepository.findBySourceUrl(sourceUrl);
-        if (urlInfo != null && urlInfo.getConvertedUrl() != null) {
-            return urlInfo.getConvertedUrl();
+        UrlInfo legacyUrlInfo = this.urlRepository.findBySourceUrl(sourceUrl);
+        if (legacyUrlInfo != null && legacyUrlInfo.getConvertedUrl() != null) {
+            this.urlRepository.updateCount(legacyUrlInfo.getId());
+            return legacyUrlInfo.getConvertedUrl();
         }
 
         UrlInfo newUrlInfo = new UrlInfo(sourceUrl);
