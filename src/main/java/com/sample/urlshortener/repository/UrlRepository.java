@@ -12,6 +12,7 @@ public interface UrlRepository extends CrudRepository<UrlInfo, Integer> {
 
     UrlInfo findById(long id);
     UrlInfo findBySourceUrl(String sourceUrl);
+    UrlInfo findByConvertedUrl(String convertedUrl);
 
     @Transactional
     @Modifying

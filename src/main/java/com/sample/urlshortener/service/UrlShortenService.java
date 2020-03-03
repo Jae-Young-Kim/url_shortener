@@ -42,4 +42,9 @@ public class UrlShortenService implements ShortenService {
         return this.baseAddress + convertedKey;
     }
 
+    @Override
+    public String normalize(String shortenUrl) {
+        UrlInfo urlInfo = this.urlRepository.findByConvertedUrl(shortenUrl);
+        return urlInfo.getSourceUrl();
+    }
 }
