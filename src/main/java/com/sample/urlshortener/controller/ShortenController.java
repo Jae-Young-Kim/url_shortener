@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShortenController {
 
     @Value("${urlshortener.base-address}")
-    private String baseAddress;
+    private String baseAddress = "";
 
     private final ShortenService shortenService;
 
