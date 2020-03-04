@@ -1,6 +1,8 @@
 package com.sample.urlshortener.controller;
 
 import com.sample.urlshortener.service.ShortenService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,7 @@ public class ShortenController {
     }
 
     @PostMapping("/shorten")
-    public String shorten(@RequestBody String url) {
-        return this.shortenService.shorten(url);
+    public ResponseEntity<String> shorten(@RequestBody String url) {
+        return new ResponseEntity<>(this.shortenService.shorten(url), HttpStatus.OK);
     }
 }

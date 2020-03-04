@@ -33,7 +33,7 @@ public class UrlShortenService implements ShortenService {
         UrlInfo newUrlInfo = new UrlInfo(sourceUrl);
         this.urlRepository.save(newUrlInfo);
 
-        long key = newUrlInfo.getId();
+        int key = newUrlInfo.getId();
         String convertedKey = this.encodeService.encode(key);
 
         newUrlInfo.setConvertedUrl(convertedKey);

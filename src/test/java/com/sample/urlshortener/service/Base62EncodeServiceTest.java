@@ -1,46 +1,24 @@
 package com.sample.urlshortener.service;
 
-import org.junit.jupiter.api.BeforeEach;
+import com.sample.urlshortener.exception.IdSizeOverException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+public class Base62EncodeServiceTest {
 
-class Base62EncodeServiceTest {
-    private static final String BASE_62_CHARACTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final int EXPECTED_NUM = 213041;
-    private static final String EXPECTED_STRING = "Tq9";
-
-    private int base62Size;
-
-    @BeforeEach
-    void setup() {
-        final int expectedSize = 62;
-        assertEquals(expectedSize, BASE_62_CHARACTERS.length());
-        this.base62Size = BASE_62_CHARACTERS.length();
-    }
+    @Autowired
+    private EncodeService encodeService;
 
     @Test
-    void encodeTest() {
-        int num = EXPECTED_NUM;
+    void overSizeIDHandleTest() {
+        final int overSizeId = Integer.MAX_VALUE;
 
-        StringBuilder sb = new StringBuilder();
-        while (num > 0) {
-            sb.append(BASE_62_CHARACTERS.charAt(num % this.base62Size));
-            num /= this.base62Size;
-        }
-        String s = sb.reverse().toString();
-
-        assertEquals(EXPECTED_STRING, s);
-    }
-
-    @Test
-    void decodeTest() {
-        int num = 0;
-
-        for (int i = 0; i < EXPECTED_STRING.length(); i++) {
-            num = num * this.base62Size + BASE_62_CHARACTERS.indexOf(EXPECTED_STRING.charAt(i));
-        }
-
-        assertEquals(EXPECTED_NUM, num);
+        Assertions.assertThrows(IdSizeOverException.class, () -> encodeService.encode(overSizeId));
     }
 }

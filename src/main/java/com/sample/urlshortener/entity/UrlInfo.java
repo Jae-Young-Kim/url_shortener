@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class UrlInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "URL_INFO_ID_GENERATOR")
-    private long id;
+    private int id;
     private String sourceUrl;
     private String convertedUrl;
     private long hit = 1;
@@ -30,7 +30,7 @@ public class UrlInfo {
         this.sourceUrl = sourceUrl;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
