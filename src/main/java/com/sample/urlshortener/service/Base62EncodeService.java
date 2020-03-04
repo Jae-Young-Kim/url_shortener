@@ -10,14 +10,14 @@ public class Base62EncodeService implements EncodeService {
     private static final int ID_LIMIT_NUM = Integer.MAX_VALUE;
 
     @Override
-    public String encode(int n) {
+    public String encode(long n) {
         if (n >= ID_LIMIT_NUM) {
             throw new IdSizeOverException("ID is over-length : " + n);
         }
 
         StringBuilder sb = new StringBuilder();
         while (n > 0) {
-            sb.append(BASE_62_CHARACTERS.charAt(n % SIZE));
+            sb.append(BASE_62_CHARACTERS.charAt((int) (n % SIZE)));
             n /= SIZE;
         }
         return sb.reverse().toString();
