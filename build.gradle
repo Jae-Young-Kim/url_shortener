@@ -34,6 +34,8 @@ dependencies {
     runtimeOnly group: 'org.hsqldb', name: 'hsqldb', version: '2.5.0'
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito:mockito-core:3.3.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:3.3.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
