@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.times;
@@ -45,12 +45,12 @@ class UrlShortenServiceTest {
     @Test
     void freshShortenUrlTest() {
         when(this.urlRepository.findBySourceUrl(anyString())).thenReturn(null);
-        when(this.encodeService.encode(anyInt())).thenReturn(SHORTEN_URL);
+        when(this.encodeService.encode(anyLong())).thenReturn(SHORTEN_URL);
 
         final String shortenUrl = this.shortenService.shorten(SOURCE_URL);
 
         verify(this.urlRepository, atLeastOnce()).findBySourceUrl(anyString());
-        verify(this.encodeService, times(1)).encode(anyInt());
+        verify(this.encodeService, times(1)).encode(anyLong());
         verify(this.urlRepository, times(2)).save(any(UrlInfo.class));
 
         assertEquals(SHORTEN_URL, shortenUrl);

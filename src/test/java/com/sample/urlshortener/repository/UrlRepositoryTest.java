@@ -24,17 +24,19 @@ class UrlRepositoryTest {
 
     @Test
     void basicSaveAndFindTest() {
+        this.urlRepository.deleteAll();
         UrlInfo urlInfo = new UrlInfo(TEST_URL);
 
-        urlRepository.save(urlInfo);
+        this.urlRepository.save(urlInfo);
 
-        UrlInfo found = urlRepository.findBySourceUrl(TEST_URL);
+        UrlInfo found = this.urlRepository.findBySourceUrl(TEST_URL);
         assertNotNull(found);
         assertEquals(TEST_URL, found.getSourceUrl());
     }
 
     @Test
     void autoGenerateKeyTest() {
+        this.urlRepository.deleteAll();
         UrlInfo urlInfo1 = new UrlInfo(TEST_URL);
         UrlInfo urlInfo2 = new UrlInfo(TEST_URL);
         UrlInfo urlInfo3 = new UrlInfo(TEST_URL);
@@ -48,10 +50,11 @@ class UrlRepositoryTest {
 
     @Test
     void updateHitCountTest() {
+        this.urlRepository.deleteAll();
         UrlInfo urlInfo = new UrlInfo(TEST_URL);
         this.urlRepository.save(urlInfo);
 
-        long key = urlInfo.getId();
+        int key = urlInfo.getId();
         this.urlRepository.updateCount(key);
 
         UrlInfo found = this.urlRepository.findById(key);
