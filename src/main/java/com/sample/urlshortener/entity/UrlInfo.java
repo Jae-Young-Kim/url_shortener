@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @SequenceGenerator(
         name = "URL_INFO_ID_GENERATOR",
         sequenceName = "URL_INFO_SEQ",
-        initialValue = 21341,
+        initialValue = 21341,       // temporary initial value
         allocationSize = 1
 )
 public class UrlInfo {
@@ -28,6 +28,12 @@ public class UrlInfo {
 
     public UrlInfo(String sourceUrl) {
         this.sourceUrl = sourceUrl;
+    }
+
+    public UrlInfo(int id, String sourceUrl, String convertedUrl) {
+        this.id = id;
+        this.sourceUrl = sourceUrl;
+        this.convertedUrl = convertedUrl;
     }
 
     public int getId() {

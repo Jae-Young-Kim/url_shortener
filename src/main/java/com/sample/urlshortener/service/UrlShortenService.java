@@ -2,16 +2,11 @@ package com.sample.urlshortener.service;
 
 import com.sample.urlshortener.entity.UrlInfo;
 import com.sample.urlshortener.repository.UrlRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class UrlShortenService implements ShortenService {
-
-    @Value("${urlshortener.base-address}")
-    private String baseAddress;
 
     private final UrlRepository urlRepository;
     private final EncodeService encodeService;
@@ -21,6 +16,7 @@ public class UrlShortenService implements ShortenService {
         this.encodeService = encodeService;
     }
 
+    @Transactional
     @Override
     public String shorten(String sourceUrl) {
 
@@ -39,7 +35,7 @@ public class UrlShortenService implements ShortenService {
         newUrlInfo.setConvertedUrl(convertedKey);
         this.urlRepository.save(newUrlInfo);
 
-        return this.baseAddress + convertedKey;
+        return convertedKey;
     }
 
     @Override

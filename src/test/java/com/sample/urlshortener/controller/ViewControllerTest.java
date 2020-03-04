@@ -18,7 +18,11 @@ class ViewControllerTest {
 
     @Test
     void indexPageTest() throws Exception {
-        this.mockMvc.perform(get("/"))
+        this.mockMvc.perform(get("/index"))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void redirectPageTest() {
     }
 }
