@@ -1,5 +1,6 @@
 package com.sample.urlshortener.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class UrlInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "URL_INFO_ID_GENERATOR")
     private int id;
+    @Column(length = 1000)
     private String sourceUrl;
     private String convertedUrl;
     private long hit = 1;

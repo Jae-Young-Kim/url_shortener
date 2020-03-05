@@ -22,6 +22,8 @@ public class ShortenController {
 
     @PostMapping("/shorten")
     public ResponseEntity<String> shorten(@RequestBody String url) {
-        return new ResponseEntity<>(this.baseAddress + this.shortenService.shorten(url), HttpStatus.OK);
+        final String protocolPattern = "https?://";
+        final String result = this.baseAddress + this.shortenService.shorten(url.replaceAll(protocolPattern, ""));
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
